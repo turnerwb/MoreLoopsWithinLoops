@@ -122,7 +122,7 @@ def run_test_largest_negative_number():
     print('Expected and actual are:', expected, answer)
 
     # Test 4:
-    expected = -999999
+    expected = -1000
     answer = largest_negative_number(([1, 2, 3, 4, 42], [-1000, 10, -999999, 42], [42]))
     print('Expected and actual are:', expected, answer)
 
@@ -161,15 +161,13 @@ def largest_negative_number(seq_seq):
     #   being constructed (so the SPACE allowed is limited to the
     #   give sequence of sequences plus any non-list variables you want).
     # ------------------------------------------------------------------
-    smallestnum = 0
+    smallestnum = None
     for k in range(len(seq_seq)):
         for j in range(len(seq_seq[k])):
-            if seq_seq[k][j] < smallestnum:
-                smallestnum = seq_seq[k][j]
-    if smallestnum == 0:
-        return None
-    else:
-        return smallestnum
+            if seq_seq[k][j] < 0:
+                if smallestnum is None or seq_seq[k][j] > smallestnum:
+                    smallestnum = seq_seq[k][j]
+    return smallestnum
 
 def run_test_first_is_elsewhere_too():
     """ Tests the    first_is_elsewhere_too    function. """
